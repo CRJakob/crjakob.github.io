@@ -1,24 +1,28 @@
-<html>
-  <head>
-  <meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CRJakob's website</title>
+  <link rel="stylesheet" href="styleset.css" />
 </head>
+<body>
+  <div>
+    <h1>Your Name</h1>
+    <p>your description or tagline here</p>
+    <!-- Optional links -->
+    <!-- <p><a href="https://github.com/yourusername">GitHub</a></p> -->
+  </div>
 
-  <body>
-    <h1>Hello World</h1>
-  </body>
+  <!-- Optional: Eruda for debug mode -->
   <script>
-  const urlParams = new URLSearchParams(window.location.search);
-  const debugMode = urlParams.get('debug') === 'true';
-
-  if (debugMode) {
-    const script = document.createElement('script');
-    script.src = '//cdn.jsdelivr.net/npm/eruda';
-    script.onload = () => {
-      eruda.init();
-    };
-    document.body.appendChild(script);
-  }
-</script>
-
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('debug') === 'true') {
+      const script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/eruda';
+      script.onload = () => eruda.init();
+      document.body.appendChild(script);
+    }
+  </script>
+</body>
 </html>
