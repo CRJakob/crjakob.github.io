@@ -2,5 +2,18 @@
   <body>
     <h1>Hello World</h1>
   </body>
-    
+  <script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const debugMode = urlParams.get('debug') === 'true';
+
+  if (debugMode) {
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/eruda';
+    script.onload = () => {
+      eruda.init();
+    };
+    document.body.appendChild(script);
+  }
+</script>
+
 </html>
