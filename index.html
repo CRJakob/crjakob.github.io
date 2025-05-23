@@ -48,5 +48,14 @@
     <footer>
       <p>© 2025 CRJakob. All rights reserved.</p>
     </footer>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('debug') === 'true') {
+        const script = document.createElement('script');
+        script.src = '//cdn.jsdelivr.net/npm/eruda';
+        script.onload = () => eruda.init();
+        document.body.appendChild(script);
+      }
+    </script>
   </body>
 </html>
