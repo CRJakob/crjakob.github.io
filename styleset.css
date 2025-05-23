@@ -1,28 +1,4 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background-color: #121212;
-  color: #ffffff;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
 h1 {
-  font-size: 3rem;
-  margin: 0;
-}
-
-p {
-  font-size: 1.25rem;
-  margin-top: 0.5rem;
-  color: #bbbbbb;
-}
-
-a {
-  color: #ffffff;
-  text-decoration: underline;
+  text-align: center;
+  color: linear-gradient(90deg,rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
 }

@@ -1,31 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CRJakob's website</title>
-  <link rel="stylesheet" href="styleset.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRJakob's Website</title>
+    <link rel="stylesheet" href="styleset.css">
 </head>
 <header>
-  <div>
-    <h1>Your Name</h1>
-    <p>your description or tagline here</p>
-    <!-- Optional links -->
-    <!-- <p><a href="https://github.com/yourusername">GitHub</a></p> -->
-  </div>
-</header>
-<body>
-  
-
-  <!-- Optional: Eruda for debug mode -->
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('debug') === 'true') {
-      const script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/eruda';
-      script.onload = () => eruda.init();
-      document.body.appendChild(script);
-    }
-  </script>
-</body>
+    <h1>Welcome to CRJakob's Website</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
 </html>
