@@ -18,6 +18,5 @@
 
 export const urlPhotos = [
 
-  // { src: 'https://files.crjakob.com/photos/my-photo.avif', alt: 'Description' },
-  { src: 'https://fs.crjakob.com/background.JPG', alt: 'Test' }
+  // { src: 'https://files.crjakob.com/photos/my-photo.avif', alt: 'Description' }
 ];

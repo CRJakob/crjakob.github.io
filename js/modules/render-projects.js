@@ -21,6 +21,10 @@ function iconExternal() {
   </svg>`;
 }
 
+function iconCodeberg() {
+  return `<svg width="16" height="16" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='#aaa' d='M12 1A11 11 0 0 0 1 12a11 11 0 0 0 1.7 6.4L12 6l9.3 12.4A11 11 0 0 0 23 12 11 11 0 0 0 12 1Z'/><path fill='#555' d='M21.3 18.4 12 6l4.4 16.8a11 11 0 0 0 4.9-4.4Z' /></svg>`
+}
+
 /* ── Card template ────────────────────────────────────────── */
 
 function projectCard(project, index) {
@@ -32,6 +36,7 @@ function projectCard(project, index) {
 
   const linksHtml = [
     links.github && `<a href="${links.github}" target="_blank" rel="noopener" class="project-card__link" aria-label="${title} on GitHub" title="GitHub">${iconGithub()}</a>`,
+    links.codeberg && `<a href="${links.codeberg}" target="_blank" rel="noopener" class="project-card__link" aria-label="${title} on Codeberg" title="Codeberg">${iconCodeberg()}</a>`,
     links.live   && `<a href="${links.live}"   target="_blank" rel="noopener" class="project-card__link" aria-label="${title} live site" title="Live site">${iconExternal()}</a>`,
   ].filter(Boolean).join('');
 

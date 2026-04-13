@@ -14,12 +14,12 @@
 
 export const projects = [
   {
-    id: 'polytrack-mods',
+    id: 'polytrackmods',
     title: 'PolyTrack Mods',
-    desc: 'A collection of mods for the racing game PolyTrack, including resource pack overrides and custom car switcher addons.',
+    desc: 'A collection of mods for PolyTrack that use PolyModLoader',
     tags: ['JavaScript', 'Game Modding'],
     links: {
-      github: 'https://github.com/crjakob',
+      codeberg: 'https://codeberg.org/CRJakob/jakobspolymods',
     },
     image: null,
   },
