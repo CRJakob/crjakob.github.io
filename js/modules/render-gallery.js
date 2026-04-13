@@ -48,14 +48,46 @@ function formatExif(exif) {
 
 /* ── Gallery ──────────────────────────────────────────────── */
 
+/**
+ * Reorder photos so they stripe across columns rather than filling one
+ * column at a time.  CSS `columns` lays items out top-to-bottom within
+ * each column in source order, so without reordering the first ~N/cols
+ * photos all appear in the left column before any appear to the right.
+ *
+ * After reordering, source positions 0..numRows-1 land in column 1,
+ * positions numRows..2*numRows-1 in column 2, etc., which means the
+ * photos at the *top of every column* are those that were originally
+ * adjacent — so the gallery fills row-by-row as images arrive.
+ */
+function reorderForColumns(arr, numCols) {
+  if (numCols <= 1) return arr;
+  const numRows = Math.ceil(arr.length / numCols);
+  const result  = [];
+  for (let col = 0; col < numCols; col++) {
+    for (let row = 0; row < numRows; row++) {
+      const idx = row * numCols + col;
+      if (idx < arr.length) result.push(arr[idx]);
+    }
+  }
+  return result;
+}
+
+function getColumnCount() {
+  const w = window.innerWidth;
+  if (w <= 580) return 1;
+  if (w <= 900) return 2;
+  return 3;
+}
+
 export async function renderGallery() {
   // 1. Fetch auto-scanned local photos from manifest
   const localPhotos = await fetch('/images/gallery/manifest.json')
     .then(r => r.ok ? r.json() : [])
     .catch(() => []);
 
-  // 2. Merge with URL-hosted photos
-  photos    = [...localPhotos, ...urlPhotos];
+  // 2. Merge with URL-hosted photos, then stripe across columns so the
+  //    gallery fills left-to-right rather than top-to-bottom per column.
+  photos    = reorderForColumns([...localPhotos, ...urlPhotos], getColumnCount());
   exifCache = new Array(photos.length).fill(undefined);
 
   const grid  = document.getElementById('gallery-grid');
@@ -68,12 +100,25 @@ export async function renderGallery() {
     return;
   }
 
-  grid.innerHTML = photos.map((photo, i) => `
-    <div class="gallery-item fade-in" data-index="${i}" style="--delay: ${i * 60}ms">
-      <img src="${photo.src}" alt="${photo.alt}" loading="lazy">
+  const numCols = getColumnCount();
+  const numRows = Math.ceil(photos.length / numCols);
+
+  grid.innerHTML = photos.map((photo, i) => {
+    // Items in the same visual row share the same delay so they fade in together.
+    const rowDelay = (i % numRows) * 60;
+    const imgAttrs = `alt="${photo.alt}" loading="lazy" decoding="async"`;
+    const imgHtml  = photo.fallback
+      ? `<picture>
+          <source srcset="${photo.src}" type="image/avif" media="(dynamic-range: high)">
+          <img src="${photo.fallback}" ${imgAttrs}>
+        </picture>`
+      : `<img src="${photo.src}" ${imgAttrs}>`;
+    return `
+    <div class="gallery-item fade-in" data-index="${i}" style="--delay: ${rowDelay}ms">
+      ${imgHtml}
       <div class="gallery-item__exif" id="exif-${i}"></div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 
   // Load EXIF for each photo asynchronously (non-blocking)
   photos.forEach((photo, i) => {
@@ -131,8 +176,12 @@ function showPhoto(index) {
   const img     = document.getElementById('lightbox-img');
   const exifBar = document.getElementById('lightbox-exif');
 
-  img.src = photos[index].src;
-  img.alt = photos[index].alt;
+  const photo = photos[index];
+  const useHdr = photo.fallback
+    ? window.matchMedia('(dynamic-range: high)').matches
+    : true;
+  img.src = (photo.fallback && !useHdr) ? photo.fallback : photo.src;
+  img.alt = photo.alt;
 
   if (exifBar) {
     const cached = exifCache[index];
