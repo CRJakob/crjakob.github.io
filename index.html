@@ -1,61 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>CRJakob</title>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <div class="hero">
-      <header>
-        <h1>Welcome to CRJakob's Website</h1>
-      </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Jakob — developer and photographer">
+  <title>Jakob</title>
+  <link rel="icon" href="/images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
 
-      <div class="badges">
-        <img loading="lazy"src="https://api.statusbadges.me/badge/status/800851541007007754?style=for-the-badge" alt="Status">
-        <img loading="lazy"src="https://api.statusbadges.me/badge/playing/800851541007007754?style=for-the-badge" alt="Now Playing">
-        <img loading="lazy"src="https://api.statusbadges.me/badge/vscode/800851541007007754?style=for-the-badge" alt="Coding">
-        <a href="https://api.statusbadges.me/openspotify/800851541007007754" target="_blank" rel="noopener">
-          <img loading="lazy"src="https://api.statusbadges.me/badge/spotify/800851541007007754?style=for-the-badge" alt="Listening To">
-        </a>
-      </div>
-
-      <div class="socials">
-        <a href="https://discord.com/user/800851541007007754" target="_blank" rel="noopener">Discord</a>
-        <a href="https://github.com/CRJakob/" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://x.com/CRJakob" target="_blank" rel="noopener">Twitter</a>
+  <!-- ── Navigation ─────────────────────────────────────────── -->
+  <nav class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="/" class="nav__logo">jakob</a>
+      <div class="nav__links">
+        <a href="#projects">Projects</a>
+        <a href="#gallery">Photos</a>
+        <a href="https://github.com/CRJakob" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="mailto:jakob@crjakob.com">Email ↗</a>
       </div>
     </div>
+  </nav>
 
-    <main class="content">
-      <p>Hi! Welcome to my Website. This is still kind of a WIP, but here is some cool stuff I am working on!</p>
+  <main>
 
-      <section class="projects">
-        <h2>Projects</h2>
-        <div class="project-grid">
-          <a href="polymods" class="project-card-link">
-            <div class="project-card">
-              <img src="images/polytrack.png" alt="Polytrack Mods">
-              <h3>Polytrack Mods</h3>
-              <p>My mods for the Game PolyTrack</p>
-            </div>
-          </a>
+    <!-- ── Hero ───────────────────────────────────────────────── -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero__content">
+          <span class="hero__eyebrow">Hey, I'm Jakob</span>
+          <h1 class="hero__headline">Developer &<br>Photographer</h1>
+          <p class="hero__bio">
+            I build software and capture moments with my camera.
+            Here's some of what I've made and seen.
+          </p>
+          <div class="hero__actions">
+            <a href="https://github.com/CRJakob" target="_blank" rel="noopener" class="btn btn--primary">GitHub</a>
+            <a href="https://x.com/CRJakob" target="_blank" rel="noopener" class="btn btn--ghost">Twitter / X</a>
+          </div>
         </div>
-      </section>
-    </main>
-    <footer>
-      <p>© 2025 CRJakob. All rights reserved.</p>
-    </footer>
-    <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('debug') === 'true') {
-        const script = document.createElement('script');
-        script.src = '//cdn.jsdelivr.net/npm/eruda';
-        script.onload = () => eruda.init();
-        document.body.appendChild(script);
-      }
-    </script>
-  </body>
+      </div>
+    </section>
+
+    <!-- ── Projects ───────────────────────────────────────────── -->
+    <section class="section" id="projects">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="section__title">Projects</h2>
+          <p class="section__desc">Things I've built</p>
+        </header>
+        <div class="projects-grid" id="projects-grid">
+          <!-- Populated by js/modules/render-projects.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Gallery ────────────────────────────────────────────── -->
+    <section class="section" id="gallery">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="section__title">Photos</h2>
+          <p class="section__desc">Shot on camera</p>
+          <p class="section__notice">
+            Photos shown here are downscaled and watermarked. For full-resolution images, prints, commercial use, or watermark-free copies, get in touch via
+            <a href="https://discord.com/users/800851541007007754" target="_blank" rel="noopener">Discord (pcmc)</a>
+            or <a href="mailto:jakob@crjakob.com">jakob@crjakob.com</a>.
+          </p>
+        </header>
+        <div class="gallery-grid" id="gallery-grid">
+          <!-- Populated by js/modules/render-gallery.js -->
+        </div>
+        <p class="gallery-empty" id="gallery-empty" hidden>Photos coming soon.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="footer__name">Jakob</span>
+      <div class="footer__links">
+        <a href="https://github.com/CRJakob" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://x.com/CRJakob" target="_blank" rel="noopener">Twitter</a>
+        <a href="mailto:jakob@crjakob.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Lightbox ───────────────────────────────────────────── -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Photo viewer">
+    <div class="lightbox__backdrop" id="lightbox-backdrop"></div>
+    <button class="lightbox__close" id="lightbox-close" aria-label="Close photo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+    <button class="lightbox__nav lightbox__prev" id="lightbox-prev" aria-label="Previous photo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+    </button>
+    <div class="lightbox__content">
+      <img class="lightbox__img" id="lightbox-img" src="" alt="">
+    </div>
+    <div class="lightbox__exif" id="lightbox-exif"></div>
+    <button class="lightbox__nav lightbox__next" id="lightbox-next" aria-label="Next photo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    </button>
+  </div>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
 </html>

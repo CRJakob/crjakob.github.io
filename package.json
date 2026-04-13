@@ -1,0 +1,7 @@
+{
+  "name": "crjakob-portfolio",
+  "private": true,
+  "scripts": {
+    "scan": "node scripts/scan-gallery.js"
+  }
+}
